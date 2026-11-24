@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aaqif Ahamed — Business Information Systems Portfolio</title>
+  <meta name="description" content="Portfolio of Aaqif Ahamed — Business Information Systems undergraduate at the University of Sri Jayewardenepura, CA Sri Lanka candidate, and AAT Sri Lanka Passed Finalist focused on Business Analysis and IT/IS Audit." />
+
+  <!-- Google Fonts: Plus Jakarta Sans (Display/Headings), Inter (Body), JetBrains Mono (Metrics & Dates) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Custom Font & Color Tokens -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            sans: ['"Inter"', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Prevent Light/Dark Theme Flash Before First Paint -->
+  <script>
+    (function () {
+      try {
+        const savedTheme = localStorage.getItem('aaqif_bento_theme');
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+      } catch (e) {
+        // Default cleanly to light mode if localStorage is restricted
+      }
+    })();
+  </script>
+
+  <!-- Modern Bento-Grid Executive Palette (Navy & Burgundy) + Light/Dark Design Tokens -->
+  <style>
+    /* =========================================================================
+       LIGHT MODE (DEFAULT) — Crisp Cool Alabaster Canvas & Pure White Bento Tiles
+       ========================================================================= */
+    :root,
+    [data-theme="light"] {
+      --bg-canvas: #F3F5F9;
+      --bg-tile: #FFFFFF;
+      --bg-tile-subtle: #F7F9FC;
+      --bg-nav: rgba(243, 245, 249, 0.84);
+      --bg-featured: #0E1C3D;
+      --bg-featured-elevated: #162954;
+
+      --text-primary: #0E1C3D;
+      --text-secondary: #4B5568;
+      --text-muted: #64748B;
+
+      --brand-navy: #0E1C3D;
+      --brand-navy-hover: #172B59;
+      --accent-burgundy: #7F1D34;
+      --accent-burgundy-hover: #69162A;
+      --accent-burgundy-soft: rgba(127, 29, 52, 0.08);
+      --accent-burgundy-border: rgba(127, 29, 52, 0.22);
+
+      --border-tile: rgba(15, 29, 64, 0.08);
+      --border-tile-hover: rgba(127, 29, 52, 0.28);
+      --border-featured: rgba(255, 255, 255, 0.12);
+
+      --shadow-tile: 0 1px 3px rgba(15, 29, 64, 0.04), 0 8px 24px -12px rgba(15, 29, 64, 0.06);
+      --shadow-tile-hover: 0 4px 12px rgba(15, 29, 64, 0.06), 0 14px 30px -12px rgba(15, 29, 64, 0.12);
+      --portrait-backdrop: linear-gradient(160deg, #E9EEF6 0%, #DFE6F1 55%, #EBE2E6 100%);
+      --status-dot: #10B981;
+      --focus-ring: rgba(127, 29, 52, 0.45);
+    }
+
+    /* =========================================================================
+       DARK MODE — Midnight Executive Navy & Luminous Rose-Burgundy Accents
+       ========================================================================= */
+    [data-theme="dark"] {
+      --bg-canvas: #080D1A;
+      --bg-tile: #10192D;
+      --bg-tile-subtle: #15213A;
+      --bg-nav: rgba(8, 13, 26, 0.84);
+      --bg-featured: linear-gradient(145deg, #162444 0%, #1F1730 100%);
+      --bg-featured-elevated: rgba(255, 255, 255, 0.06);
+
+      --text-primary: #F1F5F9;
+      --text-secondary: #A3B1C6;
+      --text-muted: #7889A3;
+
+      --brand-navy: #E2E8F0;
+      --brand-navy-hover: #FFFFFF;
+      --accent-burgundy: #E05A76;
+      --accent-burgundy-hover: #EC728C;
+      --accent-burgundy-soft: rgba(224, 90, 118, 0.14);
+      --accent-burgundy-border: rgba(224, 90, 118, 0.32);
+
+      --border-tile: rgba(255, 255, 255, 0.08);
+      --border-tile-hover: rgba(224, 90, 118, 0.35);
+      --border-featured: rgba(224, 90, 118, 0.28);
+
+      --shadow-tile: 0 2px 10px rgba(0, 0, 0, 0.28), 0 10px 28px -14px rgba(0, 0, 0, 0.48);
+      --shadow-tile-hover: 0 8px 24px rgba(0, 0, 0, 0.42), 0 16px 36px -14px rgba(0, 0, 0, 0.56);
+      --portrait-backdrop: linear-gradient(160deg, #162442 0%, #111B33 60%, #241628 100%);
+      --status-dot: #34D399;
+      --focus-ring: rgba(224, 90, 118, 0.55);
+    }
+
+    /* Base Styling & Theme Transitions */
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      transition: background-color 220ms ease, color 220ms ease;
+    }
+
+    /* Accessible Focus Rings */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--focus-ring);
+      outline-offset: 2px;
+    }
+
+    /* Section Anchor Offset for Sticky Navigation */
+    section[id],
+    footer[id] {
+      scroll-margin-top: 5.5rem;
+    }
+
+    /* Core Bento Tile Architecture */
+    .bento-tile {
+      background-color: var(--bg-tile);
+      border: 1px solid var(--border-tile);
+      border-radius: 22px;
+      box-shadow: var(--shadow-tile);
+      transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 220ms ease,
+                  box-shadow 220ms ease,
+                  background-color 220ms ease;
+    }
+
+    .bento-tile-hover:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-tile-hover);
+      box-shadow: var(--shadow-tile-hover);
+    }
+
+    /* Featured Focal Bento Tile (Deep Navy in Light / Rich Navy-Burgundy in Dark) */
+    .bento-featured {
+      background: var(--bg-featured);
+      border: 1px solid var(--border-featured);
+      border-radius: 22px;
+      color: #F8FAFC;
+      box-shadow: var(--shadow-tile);
+      transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 220ms ease,
+                  box-shadow 220ms ease;
+    }
+
+    .bento-featured-hover:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-tile-hover);
+    }
+
+    /* Burgundy Accent Border Tile */
+    .bento-burgundy-edge {
+      background-color: var(--bg-tile);
+      border: 1px solid var(--accent-burgundy-border);
+      border-radius: 22px;
+      box-shadow: var(--shadow-tile);
+      transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 220ms ease,
+                  box-shadow 220ms ease,
+                  background-color 220ms ease;
+    }
+    .bento-burgundy-edge:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-burgundy);
+      box-shadow: var(--shadow-tile-hover);
+    }
+
+    /* Navigation Bar Active Pill */
+    .nav-pill {
+      color: var(--text-secondary);
+      transition: color 180ms ease, background-color 180ms ease;
+    }
+    .nav-pill:hover {
+      color: var(--text-primary);
+      background-color: var(--bg-tile-subtle);
+    }
+    .nav-pill.is-active {
+      color: var(--accent-burgundy);
+      background-color: var(--accent-burgundy-soft);
+      font-weight: 600;
+    }
+
+    /* Primary & Secondary Executive Buttons */
+    .btn-primary {
+      background-color: #0E1C3D;
+      color: #FFFFFF;
+      border: 1px solid #0E1C3D;
+      transition: background-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+    }
+    .btn-primary:hover {
+      background-color: #7F1D34;
+      border-color: #7F1D34;
+      transform: translateY(-1px);
+    }
+    [data-theme="dark"] .btn-primary {
+      background-color: #E05A76;
+      border-color: #E05A76;
+      color: #080D1A;
+    }
+    [data-theme="dark"] .btn-primary:hover {
+      background-color: #EC728C;
+      border-color: #EC728C;
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-tile-subtle);
+      color: var(--text-primary);
+      border: 1px solid var(--border-tile);
+      transition: border-color 180ms ease, color 180ms ease, background-color 180ms ease, transform 180ms ease;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent-burgundy-border);
+      color: var(--accent-burgundy);
+      transform: translateY(-1px);
+    }
+
+    /* Case Study Modal Entrance */
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(12px) scale(0.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .modal-card-animate {
+      animation: modalIn 220ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Subtle Section Entrance Reveal */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 520ms cubic-bezier(0.22, 1, 0.36, 1), transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal-section {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .bento-tile, .bento-featured, .bento-burgundy-edge {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased overflow-x-hidden selection:bg-[#7F1D34] selection:text-white">
+
+  <!-- =========================================================================
+       STICKY NAVIGATION BAR — STRICTLY 6 UMBRELLA TOPICS + CV + THEME TOGGLE
+       ========================================================================= -->
+  <header class="sticky top-0 z-40 pt-3 px-4 sm:px-6 lg:px-8">
+    <nav
+      class="max-w-6xl mx-auto rounded-2xl px-4 sm:px-5 h-15 py-2.5 flex items-center justify-between gap-3 backdrop-blur-xl border"
+      style="background-color: var(--bg-nav); border-color: var(--border-tile); box-shadow: var(--shadow-tile);"
+      aria-label="Primary Navigation"
+    >
+      <!-- Left: Monogram Badge + Name -->
+      <a href="#overview" class="flex items-center gap-2.5 shrink-0 group">
+        <span
+          id="nav-monogram"
+          class="w-9 h-9 rounded-xl bg-[#0E1C3D] text-white font-display font-bold text-sm flex items-center justify-center border border-white/10 group-hover:bg-[#7F1D34] transition-colors"
+        >
+          AA
+        </span>
+        <span id="nav-brand-name" class="font-display font-bold text-sm sm:text-[15px] tracking-tight" style="color: var(--text-primary);">
+          Aaqif Ahamed
+        </span>
+      </a>
+
+      <!-- Center: Strictly 6 Umbrella Topics -->
+      <div id="desktop-nav-links" class="hidden lg:flex items-center gap-1 text-[13px] font-medium">
+        <!-- Populated dynamically from PORTFOLIO_DATA.navigation -->
+      </div>
+
+      <!-- Right: Download CV + Light/Dark Toggle + Mobile Menu Button -->
+      <div class="flex items-center gap-2">
+        <a
+          id="nav-cv-link"
+          href="Aaqif_Ahamed_CV.pdf"
+          download="Aaqif_Ahamed_CV.pdf"
+          class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold btn-primary"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" />
+          </svg>
+          <span>Download CV</span>
+        </a>
+
+        <!-- Light / Dark Mode Toggle -->
+        <button
+          type="button"
+          id="theme-toggle-btn"
+          onclick="toggleTheme()"
+          class="w-9 h-9 rounded-xl flex items-center justify-center btn-secondary cursor-pointer"
+          aria-label="Switch to Dark Mode"
+          title="Toggle Light / Dark Mode"
+        >
+          <span id="theme-toggle-icon" class="flex items-center justify-center" aria-hidden="true"></span>
+        </button>
+
+        <!-- Mobile Hamburger Drawer Toggle -->
+        <button
+          type="button"
+          id="mobile-menu-btn"
+          onclick="toggleMobileDrawer()"
+          class="lg:hidden w-9 h-9 rounded-xl flex items-center justify-center btn-secondary cursor-pointer"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+        >
+          <svg id="mobile-icon-open" class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+          <svg id="mobile-icon-close" class="w-4.5 h-4.5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div
+      id="mobile-drawer"
+      class="hidden lg:hidden max-w-6xl mx-auto mt-2 rounded-2xl p-4 border backdrop-blur-xl"
+      style="background-color: var(--bg-tile); border-color: var(--border-tile); box-shadow: var(--shadow-tile-hover);"
+    >
+      <div id="mobile-nav-links" class="grid grid-cols-2 gap-2 mb-3">
+        <!-- Populated dynamically -->
+      </div>
+      <div class="pt-3 border-t flex flex-col sm:flex-row gap-2" style="border-color: var(--border-tile);">
+        <a
+          id="mobile-cv-link"
+          href="Aaqif_Ahamed_CV.pdf"
+          download="Aaqif_Ahamed_CV.pdf"
+          class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold btn-primary"
+        >
+          <span>Download CV (PDF)</span>
+        </a>
+        <button
+          type="button"
+          onclick="copyEmailAddress(); toggleMobileDrawer(true);"
+          class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold btn-secondary cursor-pointer"
+        >
+          <span>Copy Email Address</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       MAIN BENTO-GRID CONTENT CONTAINER
+       ========================================================================= -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16 sm:pt-8 sm:pb-24 space-y-16 sm:space-y-20">
+
+    <!-- SECTION 1: OVERVIEW (HERO BENTO GRID) -->
+    <section id="overview" aria-label="Overview">
+      <div id="overview-bento-grid" class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
+        <!-- Rendered dynamically from PORTFOLIO_DATA -->
+      </div>
+    </section>
+
+    <!-- SECTION 2: EDUCATION & QUALIFICATIONS -->
+    <section id="education" class="space-y-8 reveal-section" aria-label="Education and Qualifications">
+      <div id="education-section-content" class="space-y-10">
+        <!-- Rendered dynamically from PORTFOLIO_DATA -->
+      </div>
+    </section>
+
+    <!-- SECTION 3: SELECTED WORK (PROJECTS) -->
+    <section id="projects" class="space-y-6 reveal-section" aria-label="Projects">
+      <div id="projects-section-content" class="space-y-6">
+        <!-- Rendered dynamically from PORTFOLIO_DATA -->
+      </div>
+    </section>
+
+    <!-- SECTION 4: EXPERIENCE, LEADERSHIP & MILESTONES -->
+    <section id="experience" class="space-y-10 reveal-section" aria-label="Experience, Leadership and Milestones">
+      <div id="experience-section-content" class="space-y-10">
+        <!-- Rendered dynamically from PORTFOLIO_DATA -->
+      </div>
+      <div id="achievements-section-content">
+        <!-- Rendered dynamically from PORTFOLIO_DATA.achievements (auto-hides if empty) -->
+      </div>
+    </section>
+
+    <!-- SECTION 5: CAPABILITIES (SKILLS) -->
+    <section id="skills" class="space-y-6 reveal-section" aria-label="Skills">
+      <div id="skills-section-content" class="space-y-8">
+        <!-- Rendered dynamically from PORTFOLIO_DATA -->
+      </div>
+    </section>
+
+    <!-- SECTION 6: CONNECT (CONTACT + REFERENCES FOOTER BENTO) -->
+    <footer id="contact" class="space-y-6 reveal-section" aria-label="Contact and References">
+      <div id="contact-section-content" class="space-y-6">
+        <!-- Rendered dynamically from PORTFOLIO_DATA -->
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- =========================================================================
+       ACCESSIBLE PROJECT CASE STUDY MODAL (NO alert() / confirm())
+       ========================================================================= -->
+  <div
+    id="case-study-modal"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-[#080D1A]/75 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-project-title"
+    onclick="handleModalBackdrop(event)"
+  >
+    <div
+      id="case-study-modal-panel"
+      class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-[24px] border modal-card-animate"
+      style="background-color: var(--bg-tile); border-color: var(--border-tile); box-shadow: 0 24px 60px -12px rgba(0,0,0,0.45);"
+    >
+      <!-- Populated dynamically when View Case Study is clicked -->
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       FLOATING TOAST NOTIFICATION (COPY FEEDBACK & PORTRAIT PREVIEW)
+       ========================================================================= -->
+  <div
+    id="toast-container"
+    class="fixed bottom-5 right-5 z-50 pointer-events-none opacity-0 translate-y-3 transition-all duration-200"
+    role="status"
+    aria-live="polite"
+  >
+    <div class="flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-[#0E1C3D] text-white border border-white/15 shadow-xl text-xs font-medium">
+      <span class="w-2 h-2 rounded-full bg-[#E05A76] shrink-0" aria-hidden="true"></span>
+      <span id="toast-text">Copied to clipboard</span>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       CENTRALIZED PORTFOLIO DATA & DYNAMIC RENDERING ENGINE
+       ========================================================================= -->
+  <script>
+    /**
+     * =========================================================================
+     * PORTFOLIO_DATA — SINGLE SOURCE OF TRUTH FOR EASY FUTURE UPDATES
+     * =========================================================================
+     * How to update your portfolio anytime (even directly on GitHub):
+     *
+     * 1. EDIT ANY TEXT OR DESCRIPTION:
+     *    Change the text inside quotes ("...") below and save.
+     *
+     * 2. TOGGLE INTERNSHIP AVAILABILITY BADGE:
+     *    Set `profile.openToInternships` to `true` or `false`, or update
+     *    `profile.statusText`.
+     *
+     * 3. ADD A NEW PROJECT:
+     *    Copy one object inside `projects.items`, paste it at the end of the
+     *    array, increment `number` ("04"), give it a unique `id`, set `visual`
+     *    ("agri" | "property" | "marketplace" | "systems"), and fill in the
+     *    title, description, techStack, githubUrl, and caseStudy fields.
+     *
+     * 4. ADD A NEW ACHIEVEMENT, CERTIFICATION, OR RECOGNITION:
+     *    Copy one object inside `achievements.items`, set `category` to
+     *    "Achievement", "Certification", or "Recognition", and optionally add
+     *    a certificate URL inside `credentialUrl` (displays a "Verify Credential ↗"
+     *    link automatically when non-empty). If you set `achievements.items: []`,
+     *    the entire achievements block hides automatically.
+     * =========================================================================
+     */
+    const PORTFOLIO_DATA = {
+      profile: {
+        fullName: "Aaqif Ahamed",
+        monogram: "AA",
+        subtitle: "BUSINESS INFORMATION SYSTEMS UNDERGRADUATE",
+        location: "Colombo, Sri Lanka",
+        openToInternships: true,
+        statusText: "Open to Internships · Business Analysis & IT/IS Audit",
+        email: "aaqifahamed18@gmail.com",
+        linkedin: "https://linkedin.com/in/aaqif-ahamed18",
+        github: "https://github.com/aq-ahamed18",
+        cvFile: "Aaqif_Ahamed_CV.pdf",
+        portraitPath: "Professional Portrait in Navy Suit.png",
+        copyrightYear: "2026"
+      },
+
+      /* STRICTLY 6 CLEAN UMBRELLA NAVIGATION LINKS */
+      navigation: [
+        { label: "Overview", href: "#overview", id: "overview" },
+        { label: "Education", href: "#education", id: "education" },
+        { label: "Projects", href: "#projects", id: "projects" },
+        { label: "Experience", href: "#experience", id: "experience" },
+        { label: "Skills", href: "#skills", id: "skills" },
+        { label: "Contact", href: "#contact", id: "contact" }
+      ],
+
+      /* SECTION 1: OVERVIEW -> PROFESSIONAL OBJECTIVE + 4 KPI BENTO TILES */
+      objective: {
+        exactHeading: "PROFESSIONAL OBJECTIVE",
+        text: "Business Information Systems undergraduate at the University of Sri Jayewardenepura with a strong foundation in accounting and business, complemented by AAT Sri Lanka Passed Finalist qualification and CA studies. Interested in Business Analysis, IT/IS Audit and technology-driven business processes."
+      },
+
+      kpiTiles: [
+        {
+          eyebrow: "University",
+          value: "USJ · 3rd Year",
+          caption: "BSc (Hons) Business Information Systems",
+          variant: "default"
+        },
+        {
+          eyebrow: "Accountancy",
+          value: "CA & AAT",
+          caption: "CA Corporate Level (1 Subject) · AAT Passed Finalist",
+          variant: "featured"
+        },
+        {
+          eyebrow: "G.C.E. A/L",
+          value: "Rank 57",
+          caption: "Kandy District · 3 A's · Z-Score 1.8878",
+          variant: "default"
+        },
+        {
+          eyebrow: "Engineering",
+          value: "3 Projects",
+          caption: "Python, Streamlit, PHP & MySQL Builds",
+          variant: "burgundy"
+        }
+      ],
+
+      /* SECTION 2: EDUCATION & QUALIFICATIONS */
+      educationSection: {
+        umbrellaLabel: "Education & Qualifications",
+        educationHeading: "EDUCATION",
+        educationItems: [
+          {
+            period: "2024 – Present",
+            tag: "Undergraduate Degree",
+            title: "BSc (Hons) in Business Information Systems - 3rd Year",
+            institution: "University of Sri Jayewardenepura · Faculty of Management Studies and Commerce",
+            details: [
+              "Focusing on Business Information Systems, enterprise workflows, accounting fundamentals, and technology-enabled management."
+            ],
+            featured: true
+          },
+          {
+            period: "2023",
+            tag: "Z-Score: 1.8878 · Rank 57",
+            title: "G.C.E. Advanced Level Examination",
+            institution: "Kingswood College, Kandy",
+            details: [
+              "3 A Passes · Z-Score: 1.8878 · Kandy District Rank: 57",
+              "Subjects: Accounting, Business Studies, Information & Communication Technology"
+            ],
+            featured: false
+          },
+          {
+            period: "2020",
+            tag: "7 A Passes · 2 B Passes",
+            title: "G.C.E. Ordinary Level Examination",
+            institution: "Benhill College, Gampola",
+            details: [
+              "7 A Passes including Maths, ICT, English Lit and 2 B Passes"
+            ],
+            featured: false
+          }
+        ],
+
+        qualificationsHeading: "PROFESSIONAL QUALIFICATIONS",
+        qualificationItems: [
+          {
+            period: "2023 – Present",
+            badge: "Corporate Level Active",
+            badgeTone: "navy",
+            title: "Chartered Accountancy - CA Sri Lanka",
+            points: [
+              "Corporate Level - 1 subject completed",
+              "Business Level Completed"
+            ]
+          },
+          {
+            period: "2021 – 2022",
+            badge: "Passed Finalist",
+            badgeTone: "burgundy",
+            title: "AAT Sri Lanka (Passed Finalist)",
+            points: [
+              "Diploma in Accounting and Business"
+            ]
+          }
+        ]
+      },
+
+      /* SECTION 3: SELECTED WORK -> PROJECTS */
+      projectsSection: {
+        umbrellaLabel: "Selected Work",
+        exactHeading: "PROJECTS",
+        items: [
+          {
+            id: "agrinest",
+            number: "01",
+            shortLabel: "AgriNest",
+            visual: "agri",
+            title: "Agriculture Crop Disease & Medication Support System",
+            description: "Developed an application to identify crop diseases, suggest relevant treatments and help locate agricultural medicines.",
+            techStack: ["Python", "Streamlit", "JSON"],
+            githubUrl: "https://github.com/aq-ahamed18/AgriNest",
+            caseStudy: {
+              context: "Farmers and agricultural users often face delays connecting visible crop disease symptoms to accurate treatment steps and sourcing the right agricultural medicines.",
+              solution: "Built an interactive decision-support web application using Python, Streamlit, and structured JSON data to guide crop disease identification, present relevant treatments, and assist in locating agricultural medicines.",
+              features: [
+                "Structured JSON knowledge base linking crop symptoms to disease profiles",
+                "Guided disease identification workflow with clear treatment suggestions",
+                "Agricultural medicine lookup support for practical field action",
+                "Clean, accessible Streamlit user interface built for fast lookup"
+              ]
+            }
+          },
+          {
+            id: "propiq",
+            number: "02",
+            shortLabel: "PROPIQ",
+            visual: "property",
+            title: "PROPIQ - Digital Property Valuation System",
+            description: "Developed a digital system to streamline property data entry and automate the generation of professional property valuation reports.",
+            techStack: ["OOP concepts", "Python", "Streamlit", "OpenStreetMap"],
+            githubUrl: "https://github.com/aq-ahamed18/propic",
+            caseStudy: {
+              context: "Manual property valuation processes involve repetitive data entry, scattered location verification, and time-intensive report formatting.",
+              solution: "Engineered an object-oriented Python application using Streamlit and OpenStreetMap integration to standardise property data capture and automate professional valuation report generation.",
+              features: [
+                "Modular Object-Oriented Programming (OOP) data structures for property records",
+                "Streamlined digital data entry reducing formatting and transcription errors",
+                "OpenStreetMap geospatial integration for clear property location context",
+                "Automated generation of professional, structured property valuation reports"
+              ]
+            }
+          },
+          {
+            id: "university-marketplace",
+            number: "03",
+            shortLabel: "Japura Marketplace",
+            visual: "marketplace",
+            title: "The University Marketplace",
+            description: "Developed an all-in-one university platform integrating Buy & Sell, Lost & Found, Campus Events and an Admin Dashboard to centralise campus activities.",
+            techStack: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
+            githubUrl: "https://github.com/aq-ahamed18/Japura-Marketplace",
+            caseStudy: {
+              context: "Student peer trading, lost-and-found notices, and university event updates are frequently scattered across disconnected messaging channels with minimal moderation.",
+              solution: "Developed a full-stack PHP and MySQL campus web platform unifying Buy & Sell listings, Lost & Found tracking, Campus Events, and an Admin Dashboard under one organised system.",
+              features: [
+                "Buy & Sell student marketplace backed by a relational MySQL database",
+                "Dedicated Lost & Found reporting and Campus Events directory",
+                "Admin Dashboard for content oversight, moderation, and platform management",
+                "Responsive front-end crafted with HTML, CSS, and JavaScript"
+              ]
+            }
+          }
+        ]
+      },
+
+      /* SECTION 4: EXPERIENCE, LEADERSHIP & MILESTONES */
+      experienceSection: {
+        umbrellaLabel: "Experience, Leadership & Milestones",
+        professionalHeading: "PROFESSIONAL EXPERIENCE",
+        professionalItems: [
+          {
+            role: "Part-time Tutor",
+            organisation: "Science Academy, Gampola",
+            period: "July 2024 – May 2026",
+            tag: "Teaching & Instruction",
+            bullets: [
+              "Conducted tuition classes for G.C.E. Advanced Level Business Studies.",
+              "Taught Business Management for AAT Level 2 students."
+            ]
+          }
+        ],
+
+        leadershipHeading: "LEADERSHIP & EXTRA CURRICULAR ACTIVITIES",
+        leadershipItems: [
+          {
+            role: "Junior Treasurer",
+            organisation: "Student Association of Information Technology (USJ)",
+            period: "Dec 2025 – Present",
+            summary: "Managed financial activities for university events, like Enliven '26, Sparsha '26 and D-Hack 2026.",
+            span: "lg:col-span-7",
+            variant: "featured"
+          },
+          {
+            role: "Membership Development Officer",
+            organisation: "ISACA Student Group (USJ)",
+            period: "Aug 2026 – Present",
+            summary: "Contributed to membership development and student engagement initiatives.",
+            span: "lg:col-span-5",
+            variant: "burgundy"
+          },
+          {
+            role: "Director of Administration",
+            organisation: "Leo Club of Colombo Legacy",
+            period: "Oct 2026 – Present",
+            summary: "Supported administrative coordination, documentation and organisational activities.",
+            span: "lg:col-span-5",
+            variant: "default"
+          },
+          {
+            role: "Member",
+            organisation: "Career Skills Development Society - USJ",
+            period: "Aug 2024 – Present",
+            summary: "Award Coordinator for JESA'26 · Finance Committee Member for JESA'25 · HR Crew for GreenHopes'25 Project.",
+            span: "lg:col-span-7",
+            variant: "default"
+          },
+          {
+            role: "Deputy Head Prefect (2020) | School Prefect (2017–2019)",
+            organisation: "Benhill College, Gampola",
+            period: "2017 – 2020",
+            summary: "Student prefect leadership culminating in appointment as Deputy Head Prefect.",
+            span: "lg:col-span-6",
+            variant: "default"
+          },
+          {
+            role: "Active Member",
+            organisation: "Commerce Society & Islamic Majlis of Kingswood College, Kandy",
+            period: "Collegiate",
+            summary: "Active contributor to school commerce and student community societies.",
+            span: "lg:col-span-6",
+            variant: "default"
+          }
+        ]
+      },
+
+      /* ACHIEVEMENTS, CERTIFICATIONS & RECOGNITIONS (AUTO-HIDES IF ITEMS IS EMPTY) */
+      achievements: {
+        exactHeading: "ACHIEVEMENTS, CERTIFICATIONS & RECOGNITIONS",
+        items: [
+          {
+            title: "AAT Sri Lanka — Passed Finalist",
+            category: "Certification",
+            date: "2022",
+            detail: "Diploma in Accounting and Business",
+            credentialUrl: ""
+          },
+          {
+            title: "CA Sri Lanka — Business Level Completed & Corporate Level Progress",
+            category: "Certification",
+            date: "2023 – Present",
+            detail: "Business Level Completed; 1 Corporate Level subject completed",
+            credentialUrl: ""
+          },
+          {
+            title: "G.C.E. A/L Excellence — Kandy District Rank 57",
+            category: "Achievement",
+            date: "2023",
+            detail: "3 A Passes with 1.8878 Z-Score at Kingswood College, Kandy",
+            credentialUrl: ""
+          },
+          {
+            title: "Deputy Head Prefect & School Prefect",
+            category: "Recognition",
+            date: "2017 – 2020",
+            detail: "Student leadership recognition at Benhill College, Gampola",
+            credentialUrl: ""
+          }
+        ]
+      },
+
+      /* SECTION 5: CAPABILITIES -> SKILLS */
+      skillsSection: {
+        umbrellaLabel: "Capabilities",
+        exactHeading: "SKILLS",
+        technicalHeading: "TECHNICAL SKILLS",
+        technicalGroups: [
+          {
+            icon: "systems",
+            title: "Business & Information Systems",
+            items: [
+              "Business Information Systems",
+              "Business Process Understanding",
+              "ERP Systems (Odoo, SAP)"
+            ]
+          },
+          {
+            icon: "accounting",
+            title: "Accounting & Finance",
+            items: [
+              "Accounting Principles",
+              "Financial Reporting Fundamentals",
+              "Management Accounting"
+            ]
+          },
+          {
+            icon: "analytics",
+            title: "Data Analysis & Reporting",
+            items: [
+              "Microsoft Excel",
+              "Power BI",
+              "Data Analysis and Visualisation"
+            ]
+          },
+          {
+            icon: "productivity",
+            title: "Productivity & Office Applications",
+            items: [
+              "Microsoft Word",
+              "PowerPoint",
+              "Excel"
+            ]
+          }
+        ],
+        languageHeading: "LANGUAGE SKILLS",
+        languages: [
+          { name: "English", level: "Professional Working Proficiency", percent: 90 },
+          { name: "Sinhala", level: "Intermediate", percent: 65 },
+          { name: "Tamil", level: "Native speaker", percent: 100 }
+        ]
+      },
+
+      /* SECTION 6: CONNECT -> CONTACT & REFERENCES */
+      contactSection: {
+        umbrellaLabel: "Connect",
+        headline: "Open to Business Analysis & IT/IS Audit Internships",
+        subtext: "Looking to contribute accounting rigor, ERP fluency, and structured systems thinking to enterprise advisory, assurance, and technology teams.",
+        referencesHeading: "REFERENCES",
+        referencesNote: "Academic and professional references are available upon request."
+      }
+    };
+
+    /* =========================================================================
+       STATE & SAFE UTILITIES
+       ========================================================================= */
+    let activeAchievementCategory = "All";
+    let toastTimer = null;
+    let copyButtonTimer = null;
+    let lastFocusedBeforeModal = null;
+
+    function esc(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function showToast(message) {
+      const container = document.getElementById("toast-container");
+      const textEl = document.getElementById("toast-text");
+      if (!container || !textEl) return;
+
+      textEl.textContent = message;
+      container.classList.remove("opacity-0", "translate-y-3");
+      container.classList.add("opacity-100", "translate-y-0");
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        container.classList.add("opacity-0", "translate-y-3");
+        container.classList.remove("opacity-100", "translate-y-0");
+      }, 2600);
+    }
+
+    /**
+     * Copies email safely using execCommand('copy') for universal iFrame compatibility.
+     */
+    function copyEmailAddress(triggerBtn) {
+      const email = PORTFOLIO_DATA.profile.email;
+      let copied = false;
+
+      try {
+        const helper = document.createElement("textarea");
+        helper.value = email;
+        helper.setAttribute("readonly", "");
+        helper.style.position = "fixed";
+        helper.style.opacity = "0";
+        document.body.appendChild(helper);
+        helper.select();
+        copied = document.execCommand("copy");
+        document.body.removeChild(helper);
+      } catch (err) {
+        copied = false;
+      }
+
+      if (triggerBtn) {
+        const labelSpan = triggerBtn.querySelector("[data-copy-label]");
+        if (labelSpan) {
+          const original = labelSpan.getAttribute("data-original") || labelSpan.textContent;
+          labelSpan.setAttribute("data-original", original);
+          labelSpan.textContent = "Copied!";
+          clearTimeout(copyButtonTimer);
+          copyButtonTimer = setTimeout(() => {
+            labelSpan.textContent = original;
+          }, 2200);
+        }
+      }
+
+      showToast(copied ? `Copied ${email}` : `Email: ${email}`);
+    }
+
+    /* =========================================================================
+       LIGHT / DARK MODE TOGGLE (PERSISTED IN LOCALSTORAGE)
+       ========================================================================= */
+    const THEME_ICONS = {
+      sun: `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.85" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2.2M12 19.8V22M4.93 4.93l1.56 1.56M17.51 17.51l1.56 1.56M2 12h2.2M19.8 12H22M4.93 19.07l1.56-1.56M17.51 6.49l1.56-1.56"/></svg>`,
+      moon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.85" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>`
+    };
+
+    function getTheme() {
+      return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+    }
+
+    function applyTheme(mode) {
+      document.documentElement.setAttribute("data-theme", mode);
+      try {
+        localStorage.setItem("aaqif_bento_theme", mode);
+      } catch (e) {
+        // Ignore storage restrictions
+      }
+      const isDark = mode === "dark";
+      const iconEl = document.getElementById("theme-toggle-icon");
+      const btnEl = document.getElementById("theme-toggle-btn");
+      if (iconEl) iconEl.innerHTML = isDark ? THEME_ICONS.sun : THEME_ICONS.moon;
+      if (btnEl) btnEl.setAttribute("aria-label", isDark ? "Switch to Light Mode" : "Switch to Dark Mode");
+    }
+
+    function toggleTheme() {
+      applyTheme(getTheme() === "dark" ? "light" : "dark");
+    }
+
+    /* =========================================================================
+       MOBILE NAVIGATION DRAWER
+       ========================================================================= */
+    function toggleMobileDrawer(forceClose = false) {
+      const drawer = document.getElementById("mobile-drawer");
+      const btn = document.getElementById("mobile-menu-btn");
+      const iconOpen = document.getElementById("mobile-icon-open");
+      const iconClose = document.getElementById("mobile-icon-close");
+      if (!drawer || !btn) return;
+
+      const shouldOpen = forceClose ? false : drawer.classList.contains("hidden");
+      drawer.classList.toggle("hidden", !shouldOpen);
+      iconOpen.classList.toggle("hidden", shouldOpen);
+      iconClose.classList.toggle("hidden", !shouldOpen);
+      btn.setAttribute("aria-expanded", String(shouldOpen));
+    }
+
+    /* =========================================================================
+       PORTRAIT FALLBACK & OPTIONAL LOCAL SANDBOX PREVIEW
+       (Hidden automatically whenever "Professional Portrait in Navy Suit.png" loads)
+       ========================================================================= */
+    function handlePortraitError(img) {
+      img.classList.add("hidden");
+      const fallback = document.getElementById("portrait-fallback");
+      if (fallback) fallback.classList.remove("hidden");
+    }
+
+    function handlePortraitPreviewUpload(event) {
+      try {
+        const file = event.target.files && event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function (ev) {
+          const img = document.getElementById("hero-portrait-img");
+          const fallback = document.getElementById("portrait-fallback");
+          if (img && ev.target && ev.target.result) {
+            img.src = ev.target.result;
+            img.classList.remove("hidden");
+            if (fallback) fallback.classList.add("hidden");
+            showToast("Portrait preview loaded");
+          }
+        };
+        reader.readAsDataURL(file);
+      } catch (err) {
+        showToast("Unable to preview selected image");
+      }
+    }
+
+    /* =========================================================================
+       CLEAN INLINE SVG ICONS & ARCHITECTURAL PROJECT MINI-PREVIEWS
+       ========================================================================= */
+    function getIconSvg(name, cls = "w-4 h-4") {
+      const icons = {
+        linkedin: `<svg class="${cls}" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>`,
+        github: `<svg class="${cls}" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>`,
+        mail: `<svg class="${cls}" fill="none" stroke="currentColor" stroke-width="1.85" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path stroke-linecap="round" stroke-linejoin="round" d="M4 7l8 6 8-6"/></svg>`,
+        mapPin: `<svg class="${cls}" fill="none" stroke="currentColor" stroke-width="1.85" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-6.2 7-11.5a7 7 0 10-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>`,
+        arrowUpRight: `<svg class="${cls}" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M9 7h8v8"/></svg>`,
+        download: `<svg class="${cls}" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>`,
+        copy: `<svg class="${cls}" fill="none" stroke="currentColor" stroke-width="1.85" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>`,
+        systems: `<svg class="${cls}" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>`,
+        accounting: `<svg class="${cls}" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M5 10v9M19 10v9M9 10v9M15 10v9M2 19h20M12 3l9 7H3l9-7z"/></svg>`,
+        analytics: `<svg class="${cls}" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 19h16M7 16v-5M12 16V7M17 16v-8"/></svg>`,
+        productivity: `<svg class="${cls}" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 3h7l5 5v13a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 015 21V4.5A1.5 1.5 0 016.5 3z"/><path stroke-linecap="round" stroke-linejoin="round" d="M14 3v5h5M9 13h6M9 17h4"/></svg>`,
+        shield: `<svg class="${cls}" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 3v6c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6l7-3z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9.5 12l1.8 1.8 3.7-3.8"/></svg>`
+      };
+      return icons[name] || "";
+    }
+
+    /**
+     * Crisp architectural mini-preview banners for each project Bento card.
+     */
+    function getProjectVisualBanner(visualKey, projectNum, shortLabel) {
+      if (visualKey === "agri") {
+        return `
+          <div class="relative h-32 w-full rounded-[16px] overflow-hidden border" style="background: linear-gradient(135deg, #0E1C3D 0%, #162B54 65%, #2A192D 100%); border-color: rgba(255,255,255,0.08);">
+            <svg viewBox="0 0 360 128" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g stroke="#FFFFFF" stroke-opacity="0.08" stroke-width="1">
+                <line x1="0" y1="32" x2="360" y2="32"/><line x1="0" y1="64" x2="360" y2="64"/><line x1="0" y1="96" x2="360" y2="96"/>
+                <line x1="72" y1="0" x2="72" y2="128"/><line x1="180" y1="0" x2="180" y2="128"/><line x1="288" y1="0" x2="288" y2="128"/>
+              </g>
+              <circle cx="258" cy="64" r="36" fill="none" stroke="#E05A76" stroke-opacity="0.45" stroke-dasharray="4 4"/>
+              <circle cx="258" cy="64" r="20" fill="#7F1D34" fill-opacity="0.55" stroke="#F1F5F9" stroke-opacity="0.4"/>
+              <path d="M258 57V71M251 64H265" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+              <path d="M96 96 C78 68, 92 32, 136 28 C138 64, 122 88, 96 96 Z" fill="#7F1D34" fill-opacity="0.85" stroke="#F8FAFC" stroke-opacity="0.65" stroke-width="1.5"/>
+              <path d="M96 96 L128 36" stroke="#F8FAFC" stroke-opacity="0.85" stroke-width="1.4" stroke-linecap="round"/>
+              <path d="M136 46 L186 46 L238 64" fill="none" stroke="#E05A76" stroke-width="1.4"/>
+              <circle cx="136" cy="46" r="3" fill="#F8FAFC"/>
+            </svg>
+            <div class="absolute top-3 left-3.5 right-3.5 flex items-center justify-between">
+              <span class="font-mono text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-white/10 text-white backdrop-blur-sm border border-white/15">${esc(projectNum)}</span>
+              <span class="font-mono text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#7F1D34]/90 text-white border border-white/15">${esc(shortLabel)}</span>
+            </div>
+          </div>
+        `;
+      }
+
+      if (visualKey === "property") {
+        return `
+          <div class="relative h-32 w-full rounded-[16px] overflow-hidden border" style="background: linear-gradient(135deg, #101E40 0%, #1B2D56 60%, #341A2C 100%); border-color: rgba(255,255,255,0.08);">
+            <svg viewBox="0 0 360 128" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g fill="none" stroke="#FFFFFF" stroke-opacity="0.1" stroke-width="1.1">
+                <path d="M0 104 Q90 74 180 92 T360 66"/>
+                <path d="M0 78 Q100 44 195 66 T360 38"/>
+              </g>
+              <polygon points="62,96 62,54 102,34 142,54 142,96" fill="#0E1C3D" stroke="#F1F5F9" stroke-opacity="0.6" stroke-width="1.5"/>
+              <rect x="82" y="64" width="16" height="16" rx="2" fill="#7F1D34"/>
+              <rect x="108" y="64" width="18" height="32" rx="1" fill="#FFFFFF" fill-opacity="0.15"/>
+              <path d="M226 92 C226 92, 248 68, 248 52 C248 40, 238 30, 226 30 C214 30, 204 40, 204 52 C204 68, 226 92, 226 92 Z" fill="#7F1D34" stroke="#FFFFFF" stroke-opacity="0.65" stroke-width="1.5"/>
+              <circle cx="226" cy="52" r="7" fill="#FFFFFF"/>
+              <rect x="282" y="74" width="10" height="22" rx="2" fill="#FFFFFF" fill-opacity="0.28"/>
+              <rect x="298" y="58" width="10" height="38" rx="2" fill="#E05A76"/>
+              <rect x="314" y="42" width="10" height="54" rx="2" fill="#FFFFFF" fill-opacity="0.82"/>
+            </svg>
+            <div class="absolute top-3 left-3.5 right-3.5 flex items-center justify-between">
+              <span class="font-mono text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-white/10 text-white backdrop-blur-sm border border-white/15">${esc(projectNum)}</span>
+              <span class="font-mono text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#7F1D34]/90 text-white border border-white/15">${esc(shortLabel)}</span>
+            </div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="relative h-32 w-full rounded-[16px] overflow-hidden border" style="background: linear-gradient(135deg, #0D1A38 0%, #17274D 58%, #2E182B 100%); border-color: rgba(255,255,255,0.08);">
+          <svg viewBox="0 0 360 128" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g stroke="#E05A76" stroke-opacity="0.55" stroke-width="1.3">
+              <line x1="180" y1="68" x2="90" y2="42"/><line x1="180" y1="68" x2="90" y2="96"/>
+              <line x1="180" y1="68" x2="270" y2="42"/><line x1="180" y1="68" x2="270" y2="96"/>
+            </g>
+            <rect x="148" y="48" width="64" height="40" rx="10" fill="#7F1D34" stroke="#FFFFFF" stroke-opacity="0.55" stroke-width="1.4"/>
+            <text x="180" y="71" text-anchor="middle" fill="#FFFFFF" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600">ADMIN</text>
+            <rect x="46" y="30" width="76" height="24" rx="7" fill="#0E1C3D" stroke="#FFFFFF" stroke-opacity="0.28"/>
+            <text x="84" y="45" text-anchor="middle" fill="#E2E8F0" font-family="JetBrains Mono, monospace" font-size="8">BUY &amp; SELL</text>
+            <rect x="46" y="84" width="76" height="24" rx="7" fill="#0E1C3D" stroke="#FFFFFF" stroke-opacity="0.28"/>
+            <text x="84" y="99" text-anchor="middle" fill="#E2E8F0" font-family="JetBrains Mono, monospace" font-size="8">LOST/FOUND</text>
+            <rect x="238" y="30" width="76" height="24" rx="7" fill="#0E1C3D" stroke="#FFFFFF" stroke-opacity="0.28"/>
+            <text x="276" y="45" text-anchor="middle" fill="#E2E8F0" font-family="JetBrains Mono, monospace" font-size="8">EVENTS</text>
+            <rect x="238" y="84" width="76" height="24" rx="7" fill="#0E1C3D" stroke="#FFFFFF" stroke-opacity="0.28"/>
+            <text x="276" y="99" text-anchor="middle" fill="#E2E8F0" font-family="JetBrains Mono, monospace" font-size="8">MYSQL DB</text>
+          </svg>
+          <div class="absolute top-3 left-3.5 right-3.5 flex items-center justify-between">
+            <span class="font-mono text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-white/10 text-white backdrop-blur-sm border border-white/15">${esc(projectNum)}</span>
+            <span class="font-mono text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#7F1D34]/90 text-white border border-white/15">${esc(shortLabel)}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    /* =========================================================================
+       RENDER SECTION 0: NAVIGATION BAR
+       ========================================================================= */
+    function renderNavigation() {
+      const { profile, navigation } = PORTFOLIO_DATA;
+
+      document.getElementById("nav-monogram").textContent = profile.monogram;
+      document.getElementById("nav-brand-name").textContent = profile.fullName;
+
+      const navCv = document.getElementById("nav-cv-link");
+      const mobCv = document.getElementById("mobile-cv-link");
+      navCv.href = profile.cvFile;
+      navCv.download = profile.cvFile;
+      mobCv.href = profile.cvFile;
+      mobCv.download = profile.cvFile;
+
+      document.getElementById("desktop-nav-links").innerHTML = navigation.map((item, idx) => `
+        <a
+          href="${esc(item.href)}"
+          data-nav-target="${esc(item.id)}"
+          class="nav-pill px-3 py-1.5 rounded-xl ${idx === 0 ? 'is-active' : ''}"
+        >
+          ${esc(item.label)}
+        </a>
+      `).join("");
+
+      document.getElementById("mobile-nav-links").innerHTML = navigation.map(item => `
+        <a
+          href="${esc(item.href)}"
+          onclick="toggleMobileDrawer(true)"
+          class="px-3.5 py-2.5 rounded-xl text-xs font-semibold border transition"
+          style="background-color: var(--bg-tile-subtle); border-color: var(--border-tile); color: var(--text-primary);"
+        >
+          ${esc(item.label)}
+        </a>
+      `).join("");
+    }
+
+    /* =========================================================================
+       RENDER SECTION 1: OVERVIEW (ASYMMETRIC 12-COL HERO BENTO GRID)
+       ========================================================================= */
+    function renderOverview() {
+      const { profile, objective, kpiTiles } = PORTFOLIO_DATA;
+
+      const kpiHtml = kpiTiles.map(tile => {
+        if (tile.variant === "featured") {
+          return `
+            <article class="sm:col-span-6 lg:col-span-3 bento-featured bento-featured-hover p-5 flex flex-col justify-between gap-3">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-rose-300">
+                  ${esc(tile.eyebrow)}
+                </span>
+                <span class="w-2 h-2 rounded-full bg-[#E05A76]" aria-hidden="true"></span>
+              </div>
+              <div>
+                <p class="font-display text-2xl font-extrabold tracking-tight text-white">
+                  ${esc(tile.value)}
+                </p>
+                <p class="text-xs text-slate-300 mt-1 leading-relaxed">
+                  ${esc(tile.caption)}
+                </p>
+              </div>
+            </article>
+          `;
+        }
+
+        const tileClass = tile.variant === "burgundy"
+          ? "bento-burgundy-edge"
+          : "bento-tile bento-tile-hover";
+
+        return `
+          <article class="sm:col-span-6 lg:col-span-3 ${tileClass} p-5 flex flex-col justify-between gap-3">
+            <span class="font-mono text-[10px] font-semibold uppercase tracking-[0.16em]" style="color: var(--accent-burgundy);">
+              ${esc(tile.eyebrow)}
+            </span>
+            <div>
+              <p class="font-display text-2xl font-extrabold tracking-tight" style="color: var(--text-primary);">
+                ${esc(tile.value)}
+              </p>
+              <p class="text-xs mt-1 leading-relaxed" style="color: var(--text-secondary);">
+                ${esc(tile.caption)}
+              </p>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      document.getElementById("overview-bento-grid").innerHTML = `
+        <!-- Main Identity Tile (col-span-8) -->
+        <article class="lg:col-span-8 bento-tile p-6 sm:p-8 flex flex-col justify-between gap-6">
+          <div class="space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-2.5">
+              ${profile.openToInternships ? `
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold border" style="background-color: var(--accent-burgundy-soft); border-color: var(--accent-burgundy-border); color: var(--accent-burgundy);">
+                  <span class="w-2 h-2 rounded-full shrink-0" style="background-color: var(--status-dot);" aria-hidden="true"></span>
+                  <span>${esc(profile.statusText)}</span>
+                </span>
+              ` : ""}
+
+              <span class="inline-flex items-center gap-1.5 text-xs font-medium" style="color: var(--text-muted);">
+                ${getIconSvg("mapPin", "w-3.5 h-3.5")}
+                <span>${esc(profile.location)}</span>
+              </span>
+            </div>
+
+            <div class="space-y-2 pt-1">
+              <h1 class="font-display text-4xl sm:text-5xl lg:text-[3.35rem] font-extrabold tracking-tight leading-[1.06]" style="color: var(--text-primary);">
+                ${esc(profile.fullName)}
+              </h1>
+              <p class="font-mono text-xs sm:text-[13px] font-semibold uppercase tracking-[0.15em]" style="color: var(--accent-burgundy);">
+                ${esc(profile.subtitle)}
+              </p>
+            </div>
+          </div>
+
+          <!-- Primary CTA Buttons + Compact Social Icon Links (No Phone Number) -->
+          <div class="flex flex-wrap items-center justify-between gap-4 pt-2 border-t" style="border-color: var(--border-tile);">
+            <div class="flex flex-wrap items-center gap-2.5">
+              <a
+                href="#projects"
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold btn-primary"
+              >
+                <span>Explore Projects</span>
+                ${getIconSvg("arrowUpRight", "w-4 h-4")}
+              </a>
+              <a
+                href="${esc(profile.cvFile)}"
+                download="${esc(profile.cvFile)}"
+                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold btn-secondary"
+              >
+                ${getIconSvg("download", "w-4 h-4")}
+                <span>Download CV (PDF)</span>
+              </a>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <a
+                href="${esc(profile.linkedin)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-10 h-10 rounded-xl flex items-center justify-center btn-secondary"
+                aria-label="LinkedIn Profile"
+                title="LinkedIn"
+              >
+                ${getIconSvg("linkedin", "w-4 h-4")}
+              </a>
+              <a
+                href="${esc(profile.github)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-10 h-10 rounded-xl flex items-center justify-center btn-secondary"
+                aria-label="GitHub Profile"
+                title="GitHub"
+              >
+                ${getIconSvg("github", "w-4 h-4")}
+              </a>
+              <a
+                href="mailto:${esc(profile.email)}"
+                class="w-10 h-10 rounded-xl flex items-center justify-center btn-secondary"
+                aria-label="Send Email to ${esc(profile.email)}"
+                title="${esc(profile.email)}"
+              >
+                ${getIconSvg("mail", "w-4 h-4")}
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Portrait Bento Tile (col-span-4, row-span-2) -->
+        <aside class="lg:col-span-4 lg:row-span-2 bento-tile p-3 flex flex-col">
+          <div
+            class="relative flex-1 min-h-[300px] sm:min-h-[340px] lg:min-h-full w-full rounded-[16px] overflow-hidden border"
+            style="background: var(--portrait-backdrop); border-color: var(--border-tile);"
+          >
+            <img
+              id="hero-portrait-img"
+              src="${esc(profile.portraitPath)}"
+              alt="${esc(profile.fullName)}"
+              onerror="handlePortraitError(this)"
+              class="w-full h-full object-cover object-top"
+            />
+
+            <!-- Automatic Fallback: Displayed ONLY if local image file is unavailable in preview sandbox -->
+            <div
+              id="portrait-fallback"
+              class="hidden absolute inset-0 flex flex-col items-center justify-between p-6 text-center bg-gradient-to-b from-[#0E1C3D] via-[#13254D] to-[#1D162B] text-white"
+            >
+              <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-rose-200/80">
+                ${esc(profile.location)}
+              </span>
+
+              <div class="space-y-3">
+                <div class="w-24 h-24 mx-auto rounded-full bg-white/10 border border-white/25 flex items-center justify-center font-display text-3xl font-bold text-white shadow-lg">
+                  ${esc(profile.monogram)}
+                </div>
+                <div>
+                  <p class="font-display font-bold text-lg">${esc(profile.fullName)}</p>
+                  <p class="text-xs text-slate-300 mt-0.5">Business Information Systems</p>
+                </div>
+              </div>
+
+              <label class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/12 hover:bg-[#7F1D34] border border-white/20 text-xs font-semibold text-white cursor-pointer transition">
+                <span>Preview Headshot</span>
+                <input type="file" accept="image/*" class="hidden" onchange="handlePortraitPreviewUpload(event)" />
+              </label>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Exact CV Heading Tile: PROFESSIONAL OBJECTIVE (col-span-8) -->
+        <article class="lg:col-span-8 bento-tile p-6 sm:p-7 flex flex-col justify-center gap-3">
+          <div class="flex items-center gap-2.5">
+            <span class="w-2 h-2 rounded-full" style="background-color: var(--accent-burgundy);" aria-hidden="true"></span>
+            <h2 class="font-mono text-[11px] font-bold uppercase tracking-[0.18em]" style="color: var(--accent-burgundy);">
+              ${esc(objective.exactHeading)}
+            </h2>
+          </div>
+          <p class="text-sm sm:text-[15px] leading-[1.72]" style="color: var(--text-secondary);">
+            ${esc(objective.text)}
+          </p>
+        </article>
+
+        <!-- 4 Compact KPI / Dual-Edge Bento Tiles across Bottom Row -->
+        <div class="lg:col-span-12 grid grid-cols-1 sm:grid-cols-12 gap-4 sm:gap-5">
+          ${kpiHtml}
+        </div>
+      `;
+    }
+
+    /* =========================================================================
+       RENDER SECTION 2: EDUCATION & PROFESSIONAL QUALIFICATIONS
+       ========================================================================= */
+    function renderEducation() {
+      const { umbrellaLabel, educationHeading, educationItems, qualificationsHeading, qualificationItems } = PORTFOLIO_DATA.educationSection;
+
+      document.getElementById("education-section-content").innerHTML = `
+        <!-- Umbrella Section Header -->
+        <div class="space-y-1.5">
+          <span class="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]" style="color: var(--accent-burgundy);">
+            ${esc(umbrellaLabel)}
+          </span>
+          <h2 class="font-display text-2xl sm:text-3xl font-extrabold tracking-tight" style="color: var(--text-primary);">
+            ${esc(educationHeading)}
+          </h2>
+        </div>
+
+        <!-- EDUCATION Bento Grid (1 Featured Wide Tile + 2 Side-by-Side Tiles) -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-5">
+          ${educationItems.map(item => `
+            <article class="${item.featured ? 'md:col-span-12 bento-featured bento-featured-hover' : 'md:col-span-6 bento-tile bento-tile-hover'} p-6 sm:p-7 flex flex-col justify-between gap-4">
+              <div class="space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <span class="inline-flex items-center px-3 py-1 rounded-full font-mono text-[11px] font-semibold ${item.featured ? 'bg-white/10 text-rose-200 border border-white/15' : ''}" style="${!item.featured ? 'background-color: var(--accent-burgundy-soft); color: var(--accent-burgundy); border: 1px solid var(--accent-burgundy-border);' : ''}">
+                    ${esc(item.tag)}
+                  </span>
+                  <span class="font-mono text-xs font-medium ${item.featured ? 'text-slate-300' : ''}" style="${!item.featured ? 'color: var(--text-muted);' : ''}">
+                    ${esc(item.period)}
+                  </span>
+                </div>
+
+                <div>
+                  <h3 class="font-display text-lg sm:text-xl font-bold leading-snug ${item.featured ? 'text-white' : ''}" style="${!item.featured ? 'color: var(--text-primary);' : ''}">
+                    ${esc(item.title)}
+                  </h3>
+                  <p class="text-sm font-medium mt-1 ${item.featured ? 'text-rose-200' : ''}" style="${!item.featured ? 'color: var(--accent-burgundy);' : ''}">
+                    ${esc(item.institution)}
+                  </p>
+                </div>
+              </div>
+
+              <ul class="space-y-1.5 pt-2 border-t ${item.featured ? 'border-white/10' : ''}" style="${!item.featured ? 'border-color: var(--border-tile);' : ''}">
+                ${item.details.map(d => `
+                  <li class="text-xs sm:text-sm leading-relaxed ${item.featured ? 'text-slate-300' : ''}" style="${!item.featured ? 'color: var(--text-secondary);' : ''}">
+                    ${esc(d)}
+                  </li>
+                `).join("")}
+              </ul>
+            </article>
+          `).join("")}
+        </div>
+
+        <!-- PROFESSIONAL QUALIFICATIONS Sub-block -->
+        <div class="space-y-5 pt-2">
+          <h3 class="font-display text-xl sm:text-2xl font-extrabold tracking-tight" style="color: var(--text-primary);">
+            ${esc(qualificationsHeading)}
+          </h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+            ${qualificationItems.map(q => {
+              const isNavy = q.badgeTone === "navy";
+              return `
+                <article class="bento-tile bento-tile-hover p-6 sm:p-7 flex flex-col justify-between gap-4">
+                  <div class="space-y-3">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                      <span class="inline-flex items-center px-3 py-1 rounded-full font-mono text-[11px] font-semibold ${isNavy ? 'bg-[#0E1C3D] text-white' : ''}" style="${!isNavy ? 'background-color: var(--accent-burgundy-soft); color: var(--accent-burgundy); border: 1px solid var(--accent-burgundy-border);' : ''}">
+                        ${esc(q.badge)}
+                      </span>
+                      <span class="font-mono text-xs" style="color: var(--text-muted);">${esc(q.period)}</span>
+                    </div>
+                    <h4 class="font-display text-lg sm:text-xl font-bold" style="color: var(--text-primary);">
+                      ${esc(q.title)}
+                    </h4>
+                  </div>
+
+                  <div class="flex flex-wrap gap-2 pt-3 border-t" style="border-color: var(--border-tile);">
+                    ${q.points.map(pt => `
+                      <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium border" style="background-color: var(--bg-tile-subtle); border-color: var(--border-tile); color: var(--text-secondary);">
+                        <span class="w-1.5 h-1.5 rounded-full" style="background-color: var(--accent-burgundy);" aria-hidden="true"></span>
+                        <span>${esc(pt)}</span>
+                      </span>
+                    `).join("")}
+                  </div>
+                </article>
+              `;
+            }).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    /* =========================================================================
+       RENDER SECTION 3: PROJECTS (3-COLUMN MODULAR BENTO CARDS + MODAL)
+       ========================================================================= */
+    function renderProjects() {
+      const { umbrellaLabel, exactHeading, items } = PORTFOLIO_DATA.projectsSection;
+
+      document.getElementById("projects-section-content").innerHTML = `
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+          <div class="space-y-1.5">
+            <span class="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]" style="color: var(--accent-burgundy);">
+              ${esc(umbrellaLabel)}
+            </span>
+            <h2 class="font-display text-2xl sm:text-3xl font-extrabold tracking-tight" style="color: var(--text-primary);">
+              ${esc(exactHeading)}
+            </h2>
+          </div>
+          <p class="text-xs sm:text-sm max-w-md" style="color: var(--text-secondary);">
+            Applied software systems built for agricultural diagnostics, property valuation automation, and campus operations.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5">
+          ${items.map(project => `
+            <article class="bento-tile bento-tile-hover p-4 sm:p-5 flex flex-col justify-between gap-5">
+              <div class="space-y-4">
+                <!-- Architectural Mini-Preview Header -->
+                ${getProjectVisualBanner(project.visual, project.number, project.shortLabel)}
+
+                <!-- Project Body -->
+                <div class="px-1 space-y-2.5">
+                  <h3 class="font-display text-lg font-bold leading-snug" style="color: var(--text-primary);">
+                    <span class="font-mono text-xs mr-1.5" style="color: var(--accent-burgundy);">${esc(project.number)}.</span>${esc(project.title)}
+                  </h3>
+                  <p class="text-xs sm:text-[13.5px] leading-relaxed" style="color: var(--text-secondary);">
+                    ${esc(project.description)}
+                  </p>
+                </div>
+
+                <!-- Tech Stack Pills -->
+                <div class="px-1 flex flex-wrap gap-1.5">
+                  ${project.techStack.map(tech => `
+                    <span class="px-2.5 py-1 rounded-lg font-mono text-[11px] font-medium border" style="background-color: var(--bg-tile-subtle); border-color: var(--border-tile); color: var(--text-primary);">
+                      ${esc(tech)}
+                    </span>
+                  `).join("")}
+                </div>
+              </div>
+
+              <!-- Card Footer Actions -->
+              <div class="px-1 pt-3 border-t flex items-center gap-2.5" style="border-color: var(--border-tile);">
+                <button
+                  type="button"
+                  onclick="openCaseStudy('${esc(project.id)}')"
+                  class="flex-1 inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs font-semibold btn-primary cursor-pointer"
+                >
+                  <span>View Case Study</span>
+                </button>
+                <a
+                  href="${esc(project.githubUrl)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs font-semibold btn-secondary"
+                  aria-label="Open ${esc(project.title)} on GitHub"
+                >
+                  <span>GitHub</span>
+                  ${getIconSvg("arrowUpRight", "w-3.5 h-3.5")}
+                </a>
+              </div>
+            </article>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    /* =========================================================================
+       ACCESSIBLE PROJECT CASE STUDY MODAL
+       ========================================================================= */
+    function openCaseStudy(projectId) {
+      const project = PORTFOLIO_DATA.projectsSection.items.find(p => p.id === projectId);
+      if (!project) return;
+
+      lastFocusedBeforeModal = document.activeElement;
+      const modal = document.getElementById("case-study-modal");
+      const panel = document.getElementById("case-study-modal-panel");
+
+      panel.innerHTML = `
+        <div class="p-5 sm:p-7 space-y-6">
+          <!-- Modal Top Row -->
+          <div class="flex items-start justify-between gap-4">
+            <div class="space-y-1.5">
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full font-mono text-[11px] font-semibold border" style="background-color: var(--accent-burgundy-soft); border-color: var(--accent-burgundy-border); color: var(--accent-burgundy);">
+                PROJECT ${esc(project.number)} &middot; ${esc(project.shortLabel)}
+              </span>
+              <h3 id="modal-project-title" class="font-display text-xl sm:text-2xl font-extrabold leading-snug" style="color: var(--text-primary);">
+                ${esc(project.title)}
+              </h3>
+            </div>
+
+            <button
+              type="button"
+              id="modal-close-btn"
+              onclick="closeCaseStudy()"
+              class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 btn-secondary cursor-pointer"
+              aria-label="Close case study"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Context & Solution Bento Pair -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-4 sm:p-5 rounded-2xl border space-y-2" style="background-color: var(--bg-tile-subtle); border-color: var(--border-tile);">
+              <h4 class="font-mono text-[11px] font-bold uppercase tracking-[0.15em]" style="color: var(--accent-burgundy);">
+                Business Context / Problem
+              </h4>
+              <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-secondary);">
+                ${esc(project.caseStudy.context)}
+              </p>
+            </div>
+
+            <div class="p-4 sm:p-5 rounded-2xl border space-y-2" style="background-color: var(--bg-tile-subtle); border-color: var(--border-tile);">
+              <h4 class="font-mono text-[11px] font-bold uppercase tracking-[0.15em]" style="color: var(--text-primary);">
+                Solution &amp; Architecture
+              </h4>
+              <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-secondary);">
+                ${esc(project.caseStudy.solution)}
+              </p>
+            </div>
+          </div>
+
+          <!-- Key Features -->
+          <div class="space-y-3">
+            <h4 class="font-mono text-[11px] font-bold uppercase tracking-[0.15em]" style="color: var(--accent-burgundy);">
+              Key Features
+            </h4>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              ${project.caseStudy.features.map(f => `
+                <li class="flex items-start gap-2.5 p-3 rounded-xl border text-xs sm:text-[13px] leading-relaxed" style="background-color: var(--bg-tile-subtle); border-color: var(--border-tile); color: var(--text-primary);">
+                  <span class="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style="background-color: var(--accent-burgundy);" aria-hidden="true"></span>
+                  <span>${esc(f)}</span>
+                </li>
+              `).join("")}
+            </ul>
+          </div>
+
+          <!-- Technologies & GitHub Link -->
+          <div class="pt-4 border-t flex flex-col sm:flex-row sm:items-center justify-between gap-4" style="border-color: var(--border-tile);">
+            <div class="space-y-1.5">
+              <span class="block font-mono text-[10px] font-semibold uppercase tracking-[0.15em]" style="color: var(--text-muted);">
+                Technologies &amp; Tools
+              </span>
+              <div class="flex flex-wrap gap-1.5">
+                ${project.techStack.map(t => `
+                  <span class="px-2.5 py-1 rounded-lg font-mono text-[11px] font-medium border" style="background-color: var(--bg-tile-subtle); border-color: var(--border-tile); color: var(--text-primary);">
+                    ${esc(t)}
+                  </span>
+                `).join("")}
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2.5 shrink-0">
+              <a
+                href="${esc(project.githubUrl)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold btn-primary"
+              >
+                ${getIconSvg("github", "w-4 h-4")}
+                <span>GitHub Repository</span>
+                ${getIconSvg("arrowUpRight", "w-3.5 h-3.5")}
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+
+      const closeBtn = document.getElementById("modal-close-btn");
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function closeCaseStudy() {
+      const modal = document.getElementById("case-study-modal");
+      if (!modal || modal.classList.contains("hidden")) return;
+      modal.classList.add("hidden");
+      document.body.style.overflow = "";
+      if (lastFocusedBeforeModal && typeof lastFocusedBeforeModal.focus === "function") {
+        lastFocusedBeforeModal.focus();
+      }
+    }
+
+    function handleModalBackdrop(event) {
+      if (event.target.id === "case-study-modal") {
+        closeCaseStudy();
+      }
+    }
+
+    /* =========================================================================
+       RENDER SECTION 4: PROFESSIONAL EXPERIENCE, LEADERSHIP & ACHIEVEMENTS
+       ========================================================================= */
+    function renderExperienceAndLeadership() {
+      const { umbrellaLabel, professionalHeading, professionalItems, leadershipHeading, leadershipItems } = PORTFOLIO_DATA.experienceSection;
+
+      document.getElementById("experience-section-content").innerHTML = `
+        <!-- PROFESSIONAL EXPERIENCE -->
+        <div class="space-y-5">
+          <div class="space-y-1.5">
+            <span class="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]" style="color: var(--accent-burgundy);">
+              ${esc(umbrellaLabel)}
+            </span>
+            <h2 class="font-display text-2xl sm:text-3xl font-extrabold tracking-tight" style="color: var(--text-primary);">
+              ${esc(professionalHeading)}
+            </h2>
+          </div>
+
+          <div class="space-y-4">
+            ${professionalItems.map(item => `
+              <article class="bento-tile bento-tile-hover p-6 sm:p-8">
+                <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-5 mb-5 border-b" style="border-color: var(--border-tile);">
+                  <div class="space-y-1">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full font-mono text-[10px] font-semibold uppercase tracking-wider border mb-1" style="background-color: var(--accent-burgundy-soft); border-color: var(--accent-burgundy-border); color: var(--accent-burgundy);">
+                      ${esc(item.tag)}
+                    </span>
+                    <h3 class="font-display text-xl sm:text-2xl font-bold" style="color: var(--text-primary);">
+                      ${esc(item.role)}
+                    </h3>
+                    <p class="text-sm font-semibold" style="color: var(--accent-burgundy);">
+                      ${esc(item.organisation)}
+                    </p>
+                  </div>
+                  <span class="inline-flex items-center px-3.5 py-1.5 rounded-xl font-mono text-xs font-semibold shrink-0 border" style="background-color: var(--bg-tile-subtle); border-color: var(--border-tile); color: var(--text-primary);">
+                    ${esc(item.period)}
+                  </span>
+                </div>
+
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  ${item.bullets.map(b => `
+                    <li class="flex items-start gap-2.5 p-3.5 rounded-2xl border text-sm leading-relaxed" style="background-color: var(--bg-tile-subtle); border-color: var(--border-tile); color: var(--text-secondary);">
+                      <span class="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style="background-color: var(--accent-burgundy);" aria-hidden="true"></span>
+                      <span>${esc(b)}</span>
+                    </li>
+                  `).join("")}
+                </ul>
+              </article>
+            `).join("")}
+          </div>
+        </div>
+
+        <!-- LEADERSHIP & EXTRA CURRICULAR ACTIVITIES (ASYMMETRIC BENTO GRID) -->
+        <div class="space-y-5">
+          <h3 class="font-display text-xl sm:text-2xl font-extrabold tracking-tight" style="color: var(--text-primary);">
+            ${esc(leadershipHeading)}
+          </h3>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
+            ${leadershipItems.map(item => {
+              if (item.variant === "featured") {
+                return `
+                  <article class="${esc(item.span)} bento-featured bento-featured-hover p-6 sm:p-7 flex flex-col justify-between gap-4">
+                    <div class="space-y-2.5">
+                      <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="font-mono text-[11px] font-semibold text-rose-300 uppercase tracking-wider">
+                          Financial Governance
+                        </span>
+                        <span class="font-mono text-xs text-slate-300">${esc(item.period)}</span>
+                      </div>
+                      <h4 class="font-display text-xl font-bold text-white leading-snug">
+                        ${esc(item.role)}
+                      </h4>
+                      <p class="text-sm font-medium text-rose-200">
+                        ${esc(item.organisation)}
+                      </p>
+                    </div>
+                    <p class="text-sm text-slate-300 leading-relaxed pt-3 border-t border-white/10">
+                      ${esc(item.summary)}
+                    </p>
+                  </article>
+                `;
+              }
+
+              const cardCls = item.variant === "burgundy"
+                ? "bento-burgundy-edge"
+                : "bento-tile bento-tile-hover";
+
+              return `
+                <article class="${esc(item.span)} ${cardCls} p-6 flex flex-col justify-between gap-3.5">
+                  <div class="space-y-2">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                      <span class="font-mono text-[11px] font-semibold" style="color: var(--accent-burgundy);">
+                        ${esc(item.period)}
+                      </span>
+                    </div>
+                    <h4 class="font-display text-lg font-bold leading-snug" style="color: var(--text-primary);">
+                      ${esc(item.role)}
+                    </h4>
+                    <p class="text-xs sm:text-sm font-semibold" style="color: var(--accent-burgundy);">
+                      ${esc(item.organisation)}
+                    </p>
+                  </div>
+                  <p class="text-xs sm:text-sm leading-relaxed pt-2.5 border-t" style="border-color: var(--border-tile); color: var(--text-secondary);">
+                    ${esc(item.summary)}
+                  </p>
+                </article>
+              `;
+            }).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    /* =========================================================================
+       ACHIEVEMENTS, CERTIFICATIONS & RECOGNITIONS (FILTERABLE + AUTO-HIDE)
+       ========================================================================= */
+    function setAchievementFilter(category) {
+      activeAchievementCategory = category;
+      renderAchievements();
+    }
+
+    function renderAchievements() {
+      const container = document.getElementById("achievements-section-content");
+      const data = PORTFOLIO_DATA.achievements;
+
+      if (!data || !Array.isArray(data.items) || data.items.length === 0) {
+        container.innerHTML = "";
+        container.classList.add("hidden");
+        return;
+      }
+      container.classList.remove("hidden");
+
+      const categories = ["All", "Achievement", "Certification", "Recognition"];
+      const filtered = activeAchievementCategory === "All"
+        ? data.items
+        : data.items.filter(item => item.category === activeAchievementCategory);
+
+      container.innerHTML = `
+        <div class="bento-tile p-6 sm:p-8 space-y-6">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 border-b" style="border-color: var(--border-tile);">
+            <div class="space-y-1">
+              <span class="font-mono text-[10px] font-semibold uppercase tracking-[0.18em]" style="color: var(--accent-burgundy);">
+                Verified Milestones
+              </span>
+              <h3 class="font-display text-xl sm:text-2xl font-extrabold tracking-tight" style="color: var(--text-primary);">
+                ${esc(data.exactHeading)}
+              </h3>
+            </div>
+
+            <!-- Interactive Category Pill Filter -->
+            <div class="flex flex-wrap gap-2" role="tablist" aria-label="Filter achievements by category">
+              ${categories.map(cat => {
+                const count = cat === "All" ? data.items.length : data.items.filter(i => i.category === cat).length;
+                const active = activeAchievementCategory === cat;
+                return `
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected="${active ? 'true' : 'false'}"
+                    onclick="setAchievementFilter('${esc(cat)}')"
+                    class="px-3.5 py-1.5 rounded-full text-xs font-semibold cursor-pointer transition border ${active ? 'btn-primary' : 'btn-secondary'}"
+                  >
+                    ${esc(cat)} <span class="font-mono text-[10px] opacity-80 ml-0.5">(${count})</span>
+                  </button>
+                `;
+              }).join("")}
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            ${filtered.map(item => `
+              <article class="p-5 rounded-2xl border flex flex-col justify-between gap-3 transition" style="background-color: var(--bg-tile-subtle); border-color: var(--border-tile);">
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="px-2.5 py-0.5 rounded-full font-mono text-[10px] font-semibold uppercase tracking-wider border" style="background-color: var(--accent-burgundy-soft); border-color: var(--accent-burgundy-border); color: var(--accent-burgundy);">
+                      ${esc(item.category)}
+                    </span>
+                    <span class="font-mono text-xs" style="color: var(--text-muted);">
+                      ${esc(item.date)}
+                    </span>
+                  </div>
+                  <h4 class="font-display text-base font-bold leading-snug" style="color: var(--text-primary);">
+                    ${esc(item.title)}
+                  </h4>
+                  <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-secondary);">
+                    ${esc(item.detail)}
+                  </p>
+                </div>
+
+                ${item.credentialUrl && item.credentialUrl.trim() !== "" ? `
+                  <div class="pt-2.5 border-t" style="border-color: var(--border-tile);">
+                    <a
+                      href="${esc(item.credentialUrl)}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1 font-mono text-xs font-semibold hover:underline"
+                      style="color: var(--accent-burgundy);"
+                    >
+                      <span>Verify Credential</span>
+                      ${getIconSvg("arrowUpRight", "w-3.5 h-3.5")}
+                    </a>
+                  </div>
+                ` : ""}
+              </article>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    /* =========================================================================
+       RENDER SECTION 5: SKILLS (TECHNICAL 2x2 BENTO + LANGUAGE FULL-WIDTH BENTO)
+       ========================================================================= */
+    function renderSkills() {
+      const { umbrellaLabel, exactHeading, technicalHeading, technicalGroups, languageHeading, languages } = PORTFOLIO_DATA.skillsSection;
+
+      document.getElementById("skills-section-content").innerHTML = `
+        <div class="space-y-1.5">
+          <span class="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]" style="color: var(--accent-burgundy);">
+            ${esc(umbrellaLabel)}
+          </span>
+          <h2 class="font-display text-2xl sm:text-3xl font-extrabold tracking-tight" style="color: var(--text-primary);">
+            ${esc(exactHeading)}
+          </h2>
+        </div>
+
+        <!-- TECHNICAL SKILLS (2x2 Bento Grid) -->
+        <div class="space-y-4">
+          <h3 class="font-mono text-xs font-bold uppercase tracking-[0.16em]" style="color: var(--text-muted);">
+            ${esc(technicalHeading)}
+          </h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+            ${technicalGroups.map(group => `
+              <article class="bento-tile bento-tile-hover p-6 flex flex-col justify-between gap-4">
+                <div class="flex items-center gap-3.5">
+                  <span class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border" style="background-color: var(--accent-burgundy-soft); border-color: var(--accent-burgundy-border); color: var(--accent-burgundy);">
+                    ${getIconSvg(group.icon, "w-5 h-5")}
+                  </span>
+                  <h4 class="font-display text-base sm:text-lg font-bold" style="color: var(--text-primary);">
+                    ${esc(group.title)}
+                  </h4>
+                </div>
+
+                <div class="flex flex-wrap gap-2">
+                  ${group.items.map(skill => `
+                    <span class="px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-medium border" style="background-color: var(--bg-tile-subtle); border-color: var(--border-tile); color: var(--text-primary);">
+                      ${esc(skill)}
+                    </span>
+                  `).join("")}
+                </div>
+              </article>
+            `).join("")}
+          </div>
+        </div>
+
+        <!-- LANGUAGE SKILLS (Full-Width Bento Card with 3 Proficiency Columns) -->
+        <div class="space-y-4">
+          <h3 class="font-mono text-xs font-bold uppercase tracking-[0.16em]" style="color: var(--text-muted);">
+            ${esc(languageHeading)}
+          </h3>
+
+          <article class="bento-tile p-6 sm:p-7">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              ${languages.map(lang => `
+                <div class="space-y-2.5">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <h4 class="font-display text-base font-bold" style="color: var(--text-primary);">
+                      ${esc(lang.name)}
+                    </h4>
+                    <span class="font-mono text-xs font-semibold" style="color: var(--accent-burgundy);">
+                      ${Number(lang.percent)}%
+                    </span>
+                  </div>
+                  <p class="text-xs" style="color: var(--text-secondary);">
+                    ${esc(lang.level)}
+                  </p>
+                  <div
+                    class="w-full h-2 rounded-full overflow-hidden"
+                    style="background-color: var(--bg-tile-subtle);"
+                    role="progressbar"
+                    aria-valuenow="${Number(lang.percent)}"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-label="${esc(lang.name)} proficiency"
+                  >
+                    <div class="h-full rounded-full" style="width: ${Number(lang.percent)}%; background: linear-gradient(90deg, #0E1C3D 0%, #7F1D34 100%);"></div>
+                  </div>
+                </div>
+              `).join("")}
+            </div>
+          </article>
+        </div>
+      `;
+    }
+
+    /* =========================================================================
+       RENDER SECTION 6: CONTACT & REFERENCES FOOTER BENTO GRID
+       (No Phone Number & No Referee PII)
+       ========================================================================= */
+    function renderContact() {
+      const { profile, contactSection } = PORTFOLIO_DATA;
+
+      document.getElementById("contact-section-content").innerHTML = `
+        <div class="space-y-1.5">
+          <span class="font-mono text-[11px] font-semibold uppercase tracking-[0.18em]" style="color: var(--accent-burgundy);">
+            ${esc(contactSection.umbrellaLabel)}
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
+          <!-- Primary Connect Bento Tile (Deep Navy Featured Card, col-span-7) -->
+          <div class="lg:col-span-7 bento-featured p-6 sm:p-8 flex flex-col justify-between gap-6">
+            <div class="space-y-3">
+              <div class="inline-flex items-center gap-1.5 font-mono text-xs text-rose-200">
+                ${getIconSvg("mapPin", "w-3.5 h-3.5")}
+                <span>${esc(profile.location)}</span>
+              </div>
+              <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-white leading-tight">
+                ${esc(contactSection.headline)}
+              </h2>
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-xl">
+                ${esc(contactSection.subtext)}
+              </p>
+            </div>
+
+            <!-- Email Row with Copy & Send Actions -->
+            <div class="p-4 rounded-2xl bg-white/8 border border-white/12 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="min-w-0">
+                <span class="block font-mono text-[10px] uppercase tracking-wider text-rose-200">Email Address</span>
+                <a href="mailto:${esc(profile.email)}" class="text-sm sm:text-base font-semibold text-white hover:text-rose-200 break-all">
+                  ${esc(profile.email)}
+                </a>
+              </div>
+              <div class="flex items-center gap-2 shrink-0">
+                <button
+                  type="button"
+                  onclick="copyEmailAddress(this)"
+                  class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/12 hover:bg-white/20 border border-white/15 text-xs font-semibold text-white cursor-pointer transition"
+                >
+                  ${getIconSvg("copy", "w-3.5 h-3.5")}
+                  <span data-copy-label>Copy Email</span>
+                </button>
+                <a
+                  href="mailto:${esc(profile.email)}"
+                  class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#7F1D34] hover:bg-[#97233E] text-xs font-semibold text-white transition"
+                >
+                  <span>Send Email</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Direct External Links + CV Download -->
+            <div class="flex flex-wrap items-center gap-2.5">
+              <a
+                href="${esc(profile.linkedin)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/18 border border-white/15 text-xs font-semibold text-white transition"
+              >
+                ${getIconSvg("linkedin", "w-4 h-4")}
+                <span>LinkedIn</span>
+                ${getIconSvg("arrowUpRight", "w-3.5 h-3.5")}
+              </a>
+              <a
+                href="${esc(profile.github)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/18 border border-white/15 text-xs font-semibold text-white transition"
+              >
+                ${getIconSvg("github", "w-4 h-4")}
+                <span>GitHub</span>
+                ${getIconSvg("arrowUpRight", "w-3.5 h-3.5")}
+              </a>
+              <a
+                href="${esc(profile.cvFile)}"
+                download="${esc(profile.cvFile)}"
+                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-[#0E1C3D] hover:bg-rose-50 text-xs font-bold transition"
+              >
+                ${getIconSvg("download", "w-4 h-4")}
+                <span>Download CV (PDF)</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- REFERENCES Bento Tile (col-span-5) -->
+          <div class="lg:col-span-5 bento-tile p-6 sm:p-8 flex flex-col justify-between gap-6">
+            <div class="space-y-4">
+              <span class="w-11 h-11 rounded-2xl flex items-center justify-center border" style="background-color: var(--accent-burgundy-soft); border-color: var(--accent-burgundy-border); color: var(--accent-burgundy);">
+                ${getIconSvg("shield", "w-5 h-5")}
+              </span>
+
+              <div class="space-y-2">
+                <h3 class="font-mono text-xs font-bold uppercase tracking-[0.18em]" style="color: var(--accent-burgundy);">
+                  ${esc(contactSection.referencesHeading)}
+                </h3>
+                <p class="font-display text-xl sm:text-2xl font-bold leading-snug" style="color: var(--text-primary);">
+                  ${esc(contactSection.referencesNote)}
+                </p>
+                <p class="text-xs sm:text-sm leading-relaxed" style="color: var(--text-secondary);">
+                  University faculty and industry referee details are shared privately during formal recruitment conversations to respect their contact privacy.
+                </p>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t flex items-center justify-between text-xs" style="border-color: var(--border-tile); color: var(--text-muted);">
+              <span>University of Sri Jayewardenepura</span>
+              <a href="#overview" class="font-semibold hover:underline" style="color: var(--accent-burgundy);">
+                Back to top &uarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Minimal Copyright Line -->
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs" style="color: var(--text-muted);">
+          <p>&copy; ${esc(profile.copyrightYear)} ${esc(profile.fullName)}</p>
+          <p class="font-mono text-[11px]">${esc(profile.location)} &middot; Business Analysis &amp; IT/IS Audit</p>
+        </div>
+      `;
+    }
+
+    /* =========================================================================
+       SCROLL SPY & REVEAL OBSERVERS
+       ========================================================================= */
+    function initScrollObservers() {
+      // 1. Active Navigation Pill Highlighting
+      const navLinks = Array.from(document.querySelectorAll("#desktop-nav-links [data-nav-target]"));
+      const sections = navLinks
+        .map(link => document.getElementById(link.getAttribute("data-nav-target")))
+        .filter(Boolean);
+
+      if ("IntersectionObserver" in window && sections.length > 0) {
+        const navObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const id = entry.target.id;
+              navLinks.forEach(link => {
+                link.classList.toggle("is-active", link.getAttribute("data-nav-target") === id);
+              });
+            }
+          });
+        }, { rootMargin: "-22% 0px -62% 0px", threshold: 0 });
+
+        sections.forEach(section => navObserver.observe(section));
+      }
+
+      // 2. Smooth Section Reveal
+      const revealEls = document.querySelectorAll(".reveal-section");
+      if (!("IntersectionObserver" in window)) {
+        revealEls.forEach(el => el.classList.add("is-visible"));
+      } else {
+        const revealObserver = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.06, rootMargin: "0px 0px -24px 0px" });
+
+        revealEls.forEach(el => revealObserver.observe(el));
+      }
+    }
+
+    /* =========================================================================
+       APPLICATION BOOTSTRAP
+       ========================================================================= */
+    document.addEventListener("DOMContentLoaded", () => {
+      try {
+        renderNavigation();
+        renderOverview();
+        renderEducation();
+        renderProjects();
+        renderExperienceAndLeadership();
+        renderAchievements();
+        renderSkills();
+        renderContact();
+
+        applyTheme(getTheme());
+        initScrollObservers();
+
+        // Escape key closes Case Study Modal & Mobile Drawer
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeCaseStudy();
+            toggleMobileDrawer(true);
+          }
+        });
+      } catch (error) {
+        console.error("Failed to initialize portfolio:", error);
+      }
+    });
+  </script>
+</body>
+</html>
